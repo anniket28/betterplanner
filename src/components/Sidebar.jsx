@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { FiGrid, FiSun, FiCalendar, FiClock } from "react-icons/fi";
 
 const links = [
-    { name: "Dashboard", icon: FiGrid, path: "/dashboard" },
+    { name: "Dashboard", icon: FiGrid, path: "/" },
     { name: "Daily", icon: FiSun, path: "/daily" },
     { name: "Weekly", icon: FiCalendar, path: "/weekly" },
     { name: "Monthly", icon: FiClock, path: "/monthly" },

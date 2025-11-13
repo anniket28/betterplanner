@@ -18,7 +18,7 @@ function App() {
         {/* Main content */}
         <div className="flex-1 bg-gray-50 p-6 overflow-auto">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard today={today} />} />
+            <Route path="/" element={<Dashboard today={today} />} />
             <Route path="/daily" element={<DailyPlanner today={today} />} />
             <Route path="/weekly" element={<WeeklyPlanner today={today} />} />
             <Route path="/monthly" element={<MonthlyPlanner today={today} />} />
