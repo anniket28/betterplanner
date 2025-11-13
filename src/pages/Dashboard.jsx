@@ -31,7 +31,7 @@ export default function Dashboard(props) {
       {/* Greeting */}
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">Hi Anniket,</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Hi User,</h1>
           <p className="text-gray-600">Here’s your progress today!</p>
         </div>
         <p className="text-gray-600 mb-6">{today}</p>
