@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.Toastify__toast {
+  font-size: 14px !important;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid;
+  border-top-color: lab(70.5521% -66.5147 45.8073) !important;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.color-empty {
+  fill: #f1f5f9;
+}
+
+.color-scale-1 {
+  fill: #93c5fd;
+}
+
+.color-scale-2 {
+  fill: #60a5fa;
+}
+
+.color-scale-3 {
+  fill: #3b82f6;
+}
+
+.color-scale-4 {
+  fill: #1d4ed8;
+}
