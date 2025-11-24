@@ -18,7 +18,7 @@ export default function Dashboard() {
     const [dailyTasks, setDailyTasks] = useState([])
     const [weeklyTasks, setWeeklyTasks] = useState([])
     const [monthlyTasks, setMonthlyTasks] = useState([])
-    const [data, setData] = useState([])
+    const [heatmap, setHeatmap] = useState([])
     const [streak, setStreak] = useState([])
     const [loading, setLoading] = useState(true)
     const [statsLoading, setStatsLoading] = useState(true)
@@ -37,10 +37,18 @@ export default function Dashboard() {
     const fetchTasks = async () => {
         axios.get(process.env.NEXT_PUBLIC_HOST + `/api/GetReq/tasks?type=All`, {
         }).then((response) => {
+            console.log(response);
+
             if (response.status === 200) {
                 setDailyTasks(response.data.dailyTasks)
                 setWeeklyTasks(response.data.weeklyTasks)
                 setMonthlyTasks(response.data.monthlyTasks)
+                const formatted = Object.keys(response.data.heatmap).map(date => ({
+                    date: date,
+                    count: response.data[date]
+                }));
+                setHeatmap(formatted);
+                setStreak(response.data.streak)
             }
             else {
                 toast.error("Error loading tasks", {
@@ -57,52 +65,8 @@ export default function Dashboard() {
         })
     };
 
-    const fetchStats = async () => {
-        axios.get(process.env.NEXT_PUBLIC_HOST + `/api/GetReq/heatmap`, {
-        }).then((response) => {
-            if (response.status === 200) {
-                const formatted = Object.keys(response.data).map(date => ({
-                    date: date,
-                    count: response.data[date]
-                }));
-                setData(formatted);
-            }
-            else {
-                toast.error("Error loading tasks", {
-                    toastId: "Error loading tasks"
-                })
-            }
-        }).catch((error) => {
-            console.log(error)
-            toast.error("Some error occurred", {
-                toastId: "Some error occurred"
-            })
-        })
-
-        axios.get(process.env.NEXT_PUBLIC_HOST + `/api/GetReq/streak`, {
-        }).then((response) => {
-            if (response.status === 200) {
-                setStreak(response.data.streak)
-            }
-            else {
-                toast.error("Error loading tasks", {
-                    toastId: "Error loading tasks"
-                })
-            }
-        }).catch((error) => {
-            console.log(error)
-            toast.error("Some error occurred", {
-                toastId: "Some error occurred"
-            })
-        })
-
-        setStatsLoading(false)
-    };
-
     useEffect(() => {
         fetchTasks()
-
-        fetchStats()
     }, [])
 
 
@@ -170,17 +134,13 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                {statsLoading && <Loader />}
+                <div className="my-3">
+                    <Streak streak={streak} />
+                </div>
 
-                {!statsLoading && <>
-                    <div className="my-3">
-                        <Streak streak={streak} />
-                    </div>
-
-                    <div className="my-3">
-                        <Heatmap data={data} />
-                    </div>
-                </>}
+                <div className="my-3">
+                    <Heatmap heatmap={heatmap} />
+                </div>
             </>}
         </div>
     );

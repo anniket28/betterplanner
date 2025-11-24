@@ -2,7 +2,7 @@ import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 
 export default function Heatmap(props) {
-    const { data } = props
+    const { heatmap } = props
 
     return (
         <div className="bg-white p-6 rounded-xl shadow">
@@ -11,7 +11,7 @@ export default function Heatmap(props) {
             <CalendarHeatmap
                 startDate={new Date(new Date().setMonth(new Date().getMonth() - 5))}
                 endDate={new Date()}
-                values={data}
+                values={heatmap}
                 classForValue={value => {
                     if (!value) return "color-empty";
                     if (value.count === 1) return "color-scale-1";
