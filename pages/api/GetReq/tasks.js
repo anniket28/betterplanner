@@ -81,7 +81,8 @@ const handler = async (req, res) => {
             {
                 $match: {
                     createdBy: email,
-                    isDeleted: false
+                    isDeleted: false,
+                    type: type,
                 }
             },
 
