@@ -37,8 +37,6 @@ export default function Dashboard() {
     const fetchTasks = async () => {
         axios.get(process.env.NEXT_PUBLIC_HOST + `/api/GetReq/tasks?type=All`, {
         }).then((response) => {
-            console.log(response);
-
             if (response.status === 200) {
                 setDailyTasks(response.data.dailyTasks)
                 setWeeklyTasks(response.data.weeklyTasks)
